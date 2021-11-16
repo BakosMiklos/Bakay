@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Időjárás</title>
+    <style>
+        html{
+            margin: auto;
+            padding: 30px;
+        }
+
+        #betolt {
+            display: inline-block;
+            background: gray;
+            height: 400px;
+            width: 300px;
+            border: green solid 1px;
+            position: relative;
+        }
+
+        #adatok {
+            overflow:auto;
+            display: inline-block;
+            background: gray;
+            height: 400px;
+            width: 300px;
+            border: green solid 1px;
+            position: relative;
+        }
+
+        #listaz {
+            overflow:auto;
+            background: gray;
+            height: 400px;
+            width: 610px;
+            border: green solid 1px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #b1 {
+            display: inherit;
+            position: relative;
+        }
+
+        #b2 {
+            display: inherit;
+            margin-bottom: -30px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function szerver() {
+            const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function() {
+                    document.getElementById("adatok").innerHTML = this.responseText;
+                }
+
+            // Kérés küldése
+            xmlhttp.open("POST", "beolvas_ment.php");
+            xmlhttp.send();
+        }
+
+        function szerver2() {
+            const xmlhttp = new XMLHttpRequest();
+                xmlhttp.onload = function() {
+                    document.getElementById("listaz").innerHTML = this.responseText;
+                }
+
+            // Kérés küldése
+            xmlhttp.open("POST", "listaz.php");
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+        <button id="b1" onclick="szerver()">Betölt/Ment</button>
+    <div id="betolt"></div>
+    <div id="adatok"></div>
+        <button id="b2" onclick="szerver2()">Listáz</button>
+    <div id="listaz"></div>
+</body>
+</html>
