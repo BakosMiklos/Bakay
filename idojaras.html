@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       #betolt{
+           display: inline-block;
+           background-color: gray;
+           border: solid 3px green;
+           width:300px;
+           height:400px;
+       } 
+       #beolvas{
+        display: inline-block;
+           background-color: gray;
+           border: solid 3px green;
+           width:300px;
+           height:400px;
+           overflow: auto;
+       } 
+       #listaz{
+           background-color: gray;
+           border: solid 3px green;
+           width:610px;
+           height:400px;
+           overflow: auto;
+       } 
+       #bment{
+           position: fixed;
+           top:100px;
+           left:50px;
+           display: inherit;
+       }
+    </style>
+    <script>
+        function szerver(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload=function(){
+                document.getElementById("beolvas").innerHTML=this.responseText;
+            }
+
+            xmlhttp.open("POST", "beolvas_ment.php");
+            xmlhttp.send();
+        }
+        function szerver2(){
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload=function(){
+                document.getElementById("listaz").innerHTML=this.responseText;
+            }
+
+            xmlhttp.open("POST", "listaz.php");
+            xmlhttp.send();
+        }
+    </script>
+
+</head>
+<body>
+    
+    <button id="bment" onclick="szerver()">Betölt/ment</button>
+    <div id="betolt"></div>    
+    <div id="beolvas"></div><br>
+    <button id="blistaz" onclick="szerver2()">listaz</button>
+    <div id="listaz"></div>
+</body>
+</html>
